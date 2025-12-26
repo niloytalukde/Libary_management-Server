@@ -181,9 +181,6 @@ Library-Management-Api/
 
 ---
 
-## 👥 Contributors
-
-- **Imtiaz Zihad** – [@imtiaz-zihad](https://github.com/imtiaz-zihad)
 
 ---
 
