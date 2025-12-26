@@ -8,10 +8,7 @@ const port = 5000;
 
 async function main() {
   try {
-   
-    
-    await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.x6gil.mongodb.net/library-management-app?retryWrites=true&w=majority&appName=Cluster0`);
-    console.log('Connected to MongoDB successfully');
+    await mongoose.connect(process.env.DATABASE_URL!);
 
     server = app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`);
