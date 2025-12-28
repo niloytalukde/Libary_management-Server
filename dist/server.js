@@ -22,7 +22,7 @@ function main() {
         try {
             yield mongoose_1.default.connect(process.env.DATABASE_URL);
             server = app_1.default.listen(port, () => {
-                console.log(`Server is running on http://localhost:${port}`);
+                console.log("Library Management System API is running successfully!");
             });
         }
         catch (error) {
