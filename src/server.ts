@@ -1,21 +1,22 @@
-import { Server } from "http";
-import app from "./app";
+import app from "../src/app";
 import mongoose from "mongoose";
-require("dotenv").config();
 
-let server: Server;
-const port = 5000;
+let isConnected = false;
 
-async function main() {
+async function connectDB() {
+  if (isConnected) return;
+
   try {
-    await mongoose.connect(process.env.DATABASE_URL!);
-
-    server = app.listen(port, () => {
-      console.log(`Server is running on http://localhost:${port}`);
-    });
+    await mongoose.connect(process.env.DATABASE_URL as string);
+    isConnected = true;
+    console.log(" MongoDB connected");
   } catch (error) {
-    console.log('MongoDB connection error:', error);
+    console.error(" MongoDB connection error:", error);
+    throw error;
   }
 }
 
-main();
+export default async function handler(req: any, res: any) {
+  await connectDB();
+  return app(req, res);
+}
